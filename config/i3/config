@@ -14,6 +14,13 @@ set $mod Mod1
 # Background
 exec_always --no-startup-id feh --bg-scale ~/Pictures/background.jpg
 
+# Layout switch
+exec_always --no-startup-id "setxkbmap -layout us,se,ua,ru -option grp:rctrl_rshift_toggle"
+#exec_always --no-startup-id "touch /home/lucky/hello"
+
+# Mouse sensetivity
+exec_always --no-startup-id "xinput set-prop 'HP HP USB 1000dpi Laser Mouse' 'libinput Accel Speed' -0.6"
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:monospace 8
@@ -89,7 +96,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+ae split v
+bindsym $mod+b split v
 
 # split in vertical orientation
 bindsym $mod+v split h
@@ -184,10 +191,10 @@ mode "resize" {
         bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
@@ -209,10 +216,10 @@ client.background       #F8F8F2
 bindsym Control+space exec --no-startup-id j4-dmenu-desktop --dmenu "dmenu -i -nf '#F8F8F2' -nb '#282A36' -sb '#FFAA01' -sf '#F8F8F2' -fn 'monospace-10' -p '  '"
 
 # Remove border and title
-for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 1
 
 # Gaps
-gaps inner 6
+gaps inner 5
 gaps outer 0
 
 # Flameshot
