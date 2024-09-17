@@ -225,5 +225,11 @@ gaps outer 0
 # Flameshot
 bindsym $mod+p exec flameshot gui
 
-# i3lock does not work
-# bindsym $mod+l exec --no-startup-id betterlockscreen --lock
+# i3lock
+bindsym $mod+l exec ~/.config/i3/lock.sh
+# exec --no-startup-id xss-lock -- ~/.config/i3/lock.sh
+
+bindsym $mod+Shift+Ctrl+0 mode "passthrough"
+mode passthrough {
+    bindsym $mod+Shift+Ctrl+0 mode "default"
+}
