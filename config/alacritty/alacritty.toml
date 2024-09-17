@@ -23,7 +23,7 @@ style = "Regular"
 save_to_clipboard = true
 
 [window]
-opacity = 0.9
+opacity = 0.8
 
 [window.padding]
 x = 6

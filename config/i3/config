@@ -11,6 +11,9 @@
 
 set $mod Mod1
 
+# Picom
+exec --no-startup-id picom -f --xrender-sync-fence
+
 # Background
 exec_always --no-startup-id feh --bg-scale ~/Pictures/background.jpg
 
