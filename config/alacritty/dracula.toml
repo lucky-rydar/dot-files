@@ -43,9 +43,9 @@ foreground = "#f8f8f2"
 background = "#ffb86c"
 foreground = "#44475a"
 
-[colors.search.footter_bar]
-background = "#282a36"
-foreground = "#f8f8f2"
+#[colors.search.footter_bar]
+#background = "#282a36"
+#foreground = "#f8f8f2"
 
 [colors.search.matches]
 background = "#50fa7b"
