@@ -1,0 +1,54 @@
+# Improved contrast for command highlighting
+
+colors:
+  primary:
+    background: '#121212'
+    foreground: '#bbbbbb'
+    bright_foreground: '#dddddd'
+  cursor:
+    text: CellBackground
+    cursor: CellForeground
+  vi_mode_cursor:
+    text: CellBackground
+    cursor: CellForeground
+  search:
+    matches:
+      foreground: '#121212'
+      background: '#cccccc'
+    focused_match:
+      foreground: '#121212'
+      background: '#b0b0b0'
+    footter_bar:
+      background: '#121212'
+      foreground: '#bbbbbb'
+  hints:
+    start:
+      foreground: '#121212'
+      background: '#bcbcbc'
+    end:
+      foreground: '#bcbcbc'
+      background: '#121212'
+  line_indicator:
+    foreground: None
+    background: None
+  selection:
+    text: CellForeground
+    background: '#2a2a2a'
+  normal:
+    black:   '#000000'
+    red:     '#ff5c57'
+    green:   '#88b88a'   # яскравіший зелений
+    yellow:  '#e0e08c'
+    blue:    '#7abaff'   # яскравіший синій
+    magenta: '#da8fb2'
+    cyan:    '#90d0d0'
+    white:   '#bbbbbb'
+  bright:
+    black:   '#3a3a3a'
+    red:     '#ff7b7b'
+    green:   '#a4d4a4'
+    yellow:  '#f5f5a0'
+    blue:    '#99ccff'
+    magenta: '#e8aacc'
+    cyan:    '#aeeeee'
+    white:   '#f0f0f0'

@@ -1,0 +1,10 @@
+# Stop all the stuff that uses nvidia
+systemctl stop ollama
+killall nvtop
+
+# Reload the NVIDIA UVM module
+sudo rmmod nvidia_uvm
+sudo modprobe nvidia_uvm
+
+# Restart Ollama service
+systemctl start ollama

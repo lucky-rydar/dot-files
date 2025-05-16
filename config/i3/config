@@ -15,11 +15,11 @@ set $mod Mod1
 exec --no-startup-id picom -f --xrender-sync-fence
 
 # Background
-exec_always --no-startup-id feh --bg-scale ~/Pictures/background.jpg
+#exec_always --no-startup-id feh --bg-scale ~/Pictures/background.jpg
+exec_always --no-startup-id feh --bg-scale /home/mdidur/.config/dot-files/wallpaper-mountain-waterfall.jpg
 
 # Layout switch
 exec_always --no-startup-id "setxkbmap -layout us,se,ua,ru -option grp:rctrl_rshift_toggle"
-#exec_always --no-startup-id "touch /home/lucky/hello"
 
 # Mouse sensetivity
 exec_always --no-startup-id "xinput set-prop 'HP HP USB 1000dpi Laser Mouse' 'libinput Accel Speed' -0.6"
@@ -207,16 +207,29 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# class                 border  bground text    indicator child_border
-client.focused          #FFAA01 #FFAA01 #F8F8F2 #FFAA01   #FFAA01
-client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
-client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
-client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
-client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
-client.background       #F8F8F2
+# backed up
+# # class                 border  bground text    indicator child_border
+# client.focused          #FFAA01 #FFAA01 #F8F8F2 #FFAA01   #FFAA01
+# client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+# client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+# client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+# client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+# client.background       #F8F8F2
+
+# # dmenu
+# bindsym Control+space exec --no-startup-id j4-dmenu-desktop --dmenu "dmenu -i -nf '#F8F8F2' -nb '#282A36' -sb '#FFAA01' -sf '#F8F8F2' -fn 'monospace-12' -p '  '"
+
+
+# class                 border    bground  text     indicator child_border
+client.focused          #7aaaaa  #7aaaaa  #F0F0F0  #7aaaaa    #7aaaaa
+client.focused_inactive #2A2A2A  #2A2A2A  #BBBBBB  #2A2A2A    #2A2A2A
+client.unfocused        #1C1C1C  #1C1C1C  #999999  #1C1C1C    #1C1C1C
+client.urgent           #44475A  #FF5555  #F8F8F2  #FF5555    #FF5555
+client.placeholder      #1C1C1C  #1C1C1C  #999999  #1C1C1C    #1C1C1C
+client.background       #121212
 
 # dmenu
-bindsym Control+space exec --no-startup-id j4-dmenu-desktop --dmenu "dmenu -i -nf '#F8F8F2' -nb '#282A36' -sb '#FFAA01' -sf '#F8F8F2' -fn 'monospace-12' -p '  '"
+bindsym Control+space exec --no-startup-id j4-dmenu-desktop --dmenu "dmenu -i -nf '#F0F0F0' -nb '#1C1C1C' -sb '#7aaaaa' -sf '#F0F0F0' -fn 'monospace-12' -p '  '"
 
 # Remove border and title
 for_window [class="^.*"] border pixel 1
