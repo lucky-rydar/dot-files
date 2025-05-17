@@ -56,12 +56,9 @@ require("lazy").setup({
     dependencies = { "nvim-tree/nvim-web-devicons" },
 
     "mason-org/mason.nvim",
-    opts = {
-        ensure_installer = {
-            "clangd",
-            "rust_analizer",
-        }
-    },
+    "williamboman/mason-lspconfig.nvim",
+    "hrsh7th/nvim-cmp",
+    "hrsh7th/cmp-nvim-lsp",
 })
 
 require("mason").setup()
@@ -106,15 +103,37 @@ vim.cmd([[
   highlight NvimTreeSymlink      guibg=NONE ctermbg=NONE
 ]])
 
+vim.diagnostic.config({
+  virtual_text = false,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+  float = {
+    border = "single",
+    source = "always",
+    header = "",
+    prefix = "",
+  },
+})
+
 vim.g.mapleader = " "
 
-require("nvim-tree").setup()
+require("nvim-tree").setup({
+  filters = {
+    dotfiles = false,
+    git_clean = false,
+    exclude = {},
+  },
+  git = {
+    enable = true,
+    ignore = false,
+  },
+})
 vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 vim.keymap.set('n', '<leader><Tab>', function()
   require('nvim-tree.api').tree.change_root_to_node()
 end, { noremap = true, silent = true })
-
-
 
 require("toggleterm").setup()
 vim.keymap.set("n", "<C-t>", ":ToggleTerm<CR>", { noremap = true, silent = true })
@@ -138,7 +157,42 @@ cmp.setup({
     { name = "nvim_lsp" },
     { name = "luasnip" },
   },
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
 })
+
+
+-- Setup Mason
+require("mason").setup()
+require("mason-lspconfig").setup({
+  ensure_installed = {
+      "clangd",
+      "rust_analyzer",
+      "pyright",
+  },
+})
+
+-- Setup LSP
+local lspconfig = require("lspconfig")
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+-- C++
+lspconfig.clangd.setup({
+    capabilities = capabilities,
+    cmd = { "clangd", "--hover-style=short" }
+})
+
+-- Rust
+lspconfig.rust_analyzer.setup({ capabilities = capabilities })
+
+-- Python
+lspconfig.pyright.setup({ capabilities = capabilities })
+
+
+-- prettify pmenu
+vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#44475a", fg = "#f8f8f2", bold = true })
 
 local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
@@ -213,3 +267,55 @@ vim.keymap.set("n", "<Esc>", "<cmd>noh<CR><Esc>", { noremap = true, silent = tru
 
 -- Keep cursor position when joining lines
 vim.keymap.set("n", "J", "mzJ`z", { noremap = true })
+
+-- show warning or error message of the higlight
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { noremap = true, silent = true })
+
+
+-- Змінити висоту активного спліта (терміналу або іншого)
+vim.keymap.set("n", "<A-=>", ":resize +2<CR>", { noremap = true, silent = true }) -- збільшити висоту
+vim.keymap.set("n", "<A-->", ":resize -2<CR>", { noremap = true, silent = true }) -- зменшити висоту
+
+vim.keymap.set("n", "<leader>h", "gg", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>g", "G", { noremap = true, silent = true })
+
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { noremap=true, silent=true })       -- go to definition
+vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { noremap=true, silent=true })   -- go to implementation
+vim.keymap.set('n', 'gr', vim.lsp.buf.references, { noremap=true, silent=true })       -- find references
+vim.keymap.set('n', 'K', function()
+    vim.lsp.buf.hover({
+        border = 'single',
+    })
+end)
+
+vim.keymap.set("n", "<leader>tq", function()
+  local api = vim.api
+  local bufnr = api.nvim_get_current_buf()
+
+  -- Close current buffer forcefully
+  vim.cmd("bd! " .. bufnr)
+
+  -- Get list of buffers excluding 'nvim-tree'
+  local buffers = {}
+  for _, b in ipairs(vim.fn.getbufinfo({ buflisted = 1 })) do
+    local name = vim.api.nvim_buf_get_name(b.bufnr)
+    if not name:match("NvimTree") then
+      table.insert(buffers, b.bufnr)
+    end
+  end
+
+  -- Switch to first available buffer (if any)
+  if #buffers > 0 then
+    vim.cmd("buffer " .. buffers[1])
+  else
+    -- If no other buffers, maybe open empty buffer
+    vim.cmd("enew")
+  end
+end, { noremap = true, silent = true })
+
+-- some info
+-- gh - go to select mode
+-- yyp - copy row and paste it on the next line
+-- yy copy line
+-- dd remove line, or in visual mode cut
+-- ctrl+\ -> ctrl+n - terminal in normal mode so you can change size
