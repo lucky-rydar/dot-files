@@ -23,6 +23,8 @@ vim.o.shiftwidth = 4         -- number of spaces for each indentation
 vim.o.tabstop = 4            -- number of spaces that a <Tab> in the file counts for
 vim.o.softtabstop = 4        -- number of spaces inserted when pressing <Tab>
 
+vim.g.mapleader = " "
+
 require("lazy").setup({
     -- File explorer
     "nvim-tree/nvim-tree.lua",
@@ -57,9 +59,63 @@ require("lazy").setup({
 
     "mason-org/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
-    "hrsh7th/nvim-cmp",
     "hrsh7th/cmp-nvim-lsp",
+
+    { 'milanglacier/minuet-ai.nvim' },
+    { 'nvim-lua/plenary.nvim' },
 })
+
+require('minuet').setup {
+    provider = 'openai_fim_compatible',
+    n_completions = 1, -- recommend for local model for resource saving
+    -- I recommend beginning with a small context window size and incrementally
+    -- expanding it, depending on your local computing power. A context window
+    -- of 512, serves as an good starting point to estimate your computing
+    -- power. Once you have a reliable estimate of your local computing power,
+    -- you should adjust the context window to a larger value.
+    context_window = 512,
+    provider_options = {
+        openai_fim_compatible = {
+            -- For Windows users, TERM may not be present in environment variables.
+            -- Consider using APPDATA instead.
+            api_key = 'TERM',
+            name = 'Ollama',
+            end_point = 'http://localhost:11434/v1/completions',
+            model = 'qwen2.5-coder:7b',
+            optional = {
+                max_tokens = 256,
+            },
+        },
+    },
+}
+
+require('cmp').setup {
+    sources = {
+        {
+             -- Include minuet as a source to enable autocompletion
+            { name = 'minuet' },
+            -- and your other sources
+        }
+    },
+    performance = {
+        -- It is recommended to increase the timeout duration due to
+        -- the typically slower response speed of LLMs compared to
+        -- other completion sources. This is not needed when you only
+        -- need manual completion.
+        fetching_timeout = 2000,
+    },
+}
+
+
+-- If you wish to invoke completion manually,
+-- The following configuration binds `A-y` key
+-- to invoke the configuration manually.
+require('cmp').setup {
+    mapping = {
+        ["<A-c>"] = require('minuet').make_cmp_map()
+        -- and your other keymappings
+    },
+}
 
 require("mason").setup()
 
@@ -116,8 +172,6 @@ vim.diagnostic.config({
     prefix = "",
   },
 })
-
-vim.g.mapleader = " "
 
 require("nvim-tree").setup({
   filters = {
@@ -319,3 +373,4 @@ end, { noremap = true, silent = true })
 -- yy copy line
 -- dd remove line, or in visual mode cut
 -- ctrl+\ -> ctrl+n - terminal in normal mode so you can change size
+
