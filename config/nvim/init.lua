@@ -37,7 +37,7 @@ require("lazy").setup({
     "akinsho/toggleterm.nvim",
 
     -- LSP and completion
-    "neovim/nvim-lspconfig",
+    { "neovim/nvim-lspconfig" },
     "hrsh7th/nvim-cmp",
     "hrsh7th/cmp-nvim-lsp",
     "L3MON4D3/LuaSnip",
@@ -235,7 +235,12 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 -- C++
 lspconfig.clangd.setup({
     capabilities = capabilities,
-    cmd = { "clangd", "--hover-style=short" }
+    cmd = { 
+        "clangd",
+        "--hover-style=short",
+        "--background-index",
+        "--clang-tidy",
+    },
 })
 
 -- Rust
