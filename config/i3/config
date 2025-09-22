@@ -12,11 +12,13 @@
 set $mod Mod1
 
 # Picom
-exec --no-startup-id picom -f --xrender-sync-fence
+exec --no-startup-id picom --config ~/.config/dot-files/config/picom/picom.conf --backend xrender
+#exec --no-startup-id picom -f --backend xrender --xrender-sync-fence
+#exec --no-startup-id picom --backend xrender --no-fading-openclose --no-fading-destroyed-argb --vsync
 
 # Background
 #exec_always --no-startup-id feh --bg-scale ~/Pictures/background.jpg
-exec_always --no-startup-id feh --bg-scale /home/mdidur/.config/dot-files/wallpaper-mountain-waterfall.jpg
+exec_always --no-startup-id feh --bg-scale ~/.config/dot-files/wallpaper-mountain-waterfall.jpg
 
 # Layout switch
 exec_always --no-startup-id "setxkbmap -layout us,se,ua,ru -option grp:rctrl_rshift_toggle"
