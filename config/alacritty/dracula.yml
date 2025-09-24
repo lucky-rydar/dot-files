@@ -37,9 +37,9 @@ colors:
   normal:
     black:   '#000000'
     red:     '#ff5c57'
-    green:   '#88b88a'   # яскравіший зелений
+    green:   '#88b88a'
     yellow:  '#e0e08c'
-    blue:    '#7abaff'   # яскравіший синій
+    blue:    '#7abaff'
     magenta: '#da8fb2'
     cyan:    '#90d0d0'
     white:   '#bbbbbb'
