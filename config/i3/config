@@ -12,7 +12,8 @@
 set $mod Mod1
 
 # Picom
-exec --no-startup-id picom --config ~/.config/dot-files/config/picom/picom.conf --backend xrender
+#exec --no-startup-id picom --config ~/.config/dot-files/config/picom/picom.conf --backend xrender
+exec --no-startup-id picom --config ~/.config/dot-files/config/picom/picom.conf --backend glx
 #exec --no-startup-id picom -f --backend xrender --xrender-sync-fence
 #exec --no-startup-id picom --backend xrender --no-fading-openclose --no-fading-destroyed-argb --vsync
 
