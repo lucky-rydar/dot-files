@@ -17,6 +17,7 @@ symlinks = {
     cwd / "config" / "polybar": Path.home() / ".config" / "polybar",
     cwd / "background.jpg": pictures_dir / "background.jpg",
     cwd / "config" / "zsh" / ".zshrc": Path.home() / ".zshrc",
+    cwd / "config" / "autostart" / "picom.desktop": Path.home() / ".config" / "autostart" / "picom.desktop"
 }
 
 for src, dest in symlinks.items():
