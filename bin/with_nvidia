@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Script to enable NVIDIA GPU rendering for applications
+# Usage: source with_nvidia (to set environment variables in current shell)
+#    or: ./with_nvidia <command> (to run command with GPU enabled)
+
+export __NV_PRIME_RENDER_OFFLOAD=1
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+
+exec "$@"
