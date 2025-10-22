@@ -1,0 +1,40 @@
+{
+  "timestamp": "2025-10-22T22:31:26.182199",
+  "machine_id": "f1283673d173486a80f875453347a422",
+  "cpu": {
+    "online_cores": [
+      0,
+      1,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "governor": "powersave",
+    "max_freq_khz": 1200000
+  },
+  "gpu": {
+    "available": true,
+    "backend": "nvidia",
+    "power_limit_w": null,
+    "clocks": {
+      "core": 210,
+      "mem": 405
+    }
+  },
+  "on_ac_power": true
+}
