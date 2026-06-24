@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Check if AC adapter is connected
-if [ -f "/sys/class/power_supply/ACAD/online" ]; then
-    ac_online=$(cat /sys/class/power_supply/ACAD/online)
+if [ -f "/sys/class/power_supply/ADP0/online" ]; then
+    ac_online=$(cat /sys/class/power_supply/ADP0/online)
 else
     # Fallback for systems with different AC adapter naming
     ac_online=0
