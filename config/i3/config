@@ -20,7 +20,7 @@ exec --no-startup-id picom -f --xrender-sync-fence --fade-in-step=1 --fade-out-s
 exec_always --no-startup-id feh --bg-scale /home/mdidur/.config/dot-files/wallpaper-mountain-waterfall.jpg
 
 # Layout switch
-exec_always --no-startup-id "setxkbmap -layout us,se,ua,ru -option grp:rctrl_rshift_toggle"
+exec_always --no-startup-id "setxkbmap -layout us,se,ua,ru -option grp:lctrl_lwin_toggle"
 
 # Mouse sensetivity
 exec_always --no-startup-id "xinput set-prop 'HP HP USB 1000dpi Laser Mouse' 'libinput Accel Speed' -0.6"
